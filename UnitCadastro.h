@@ -11,6 +11,8 @@
 #include <FMX.StdCtrls.hpp>
 #include <FMX.Types.hpp>
 
+#include "UnitPrincipal.h"
+
 
 // ---------------------------------------------------------------------------
 class TFormCadastro : public TForm {
@@ -32,7 +34,6 @@ __published: // IDE-managed Components
 
 private: // User declarations
 public: // User declarations
-	String* krl;
 	Paciente* paciente;
 	bool usuarioRegistrou = false;
 	__fastcall TFormCadastro(TComponent* Owner);
