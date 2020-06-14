@@ -19,6 +19,7 @@ Clinica* clinica;
 // ---------------------------------------------------------------------------
 __fastcall TFormPrincipal::TFormPrincipal(TComponent* Owner) : TForm(Owner) {
 	clinica = new Clinica();
+
 	this->atualizaGrid();
 }
 
@@ -41,11 +42,11 @@ int TFormPrincipal::atualizaGrid() {
 		fread(&clinica->pacientes[i]->codigo,
 			sizeof(clinica->pacientes[i]->codigo), 1, le);
 		fread(&clinica->pacientes[i]->nome,
-			sizeof(clinica->pacientes[i]->nome), 1, le);
+			sizeof(clinica->pacientes[i]->nome) + 1, 1, le);
 		fread(&clinica->pacientes[i]->sexo,
 			sizeof(clinica->pacientes[i]->sexo), 1, le);
 		fread(&clinica->pacientes[i]->dataNascimento,
-			sizeof(clinica->pacientes[i]->dataNascimento), 1, le);
+			sizeof(clinica->pacientes[i]->dataNascimento) + 1, 1, le);
 		fread(&clinica->pacientes[i]->imc.peso,
 			sizeof(clinica->pacientes[i]->imc.peso), 1, le);
 		fread(&clinica->pacientes[i]->imc.altura,
@@ -63,7 +64,7 @@ int TFormPrincipal::atualizaGrid() {
 		StringGrid1->Cells[3][i] = clinica->pacientes[i]->dataNascimento;
 		StringGrid1->Cells[4][i] = clinica->pacientes[i]->imc.peso;
 		StringGrid1->Cells[5][i] = clinica->pacientes[i]->imc.altura;
-        StringGrid1->Cells[6][i] = clinica->pacientes[i]->imc.calculaIMC();
+		StringGrid1->Cells[6][i] = clinica->pacientes[i]->imc.calculaIMC();
 	}
 
 	fclose(le);
@@ -132,6 +133,7 @@ IMC::IMC() {
 Paciente::Paciente() {
 	this->codigo = clinica->qtdPacientes;
 	clinica->pacientes[clinica->qtdPacientes] = this;
+	clinica->qtdPacientes++;
 }
 
 // Paciente::Paciente(char nome[], char sexo, char dataNascimento[], double peso,
@@ -156,11 +158,11 @@ int Clinica::atualizaDados(TFormPrincipal* form) {
 		fwrite(&clinica->pacientes[i]->codigo,
 			sizeof(clinica->pacientes[i]->codigo), 1, salva);
 		fwrite(&clinica->pacientes[i]->nome,
-			sizeof(clinica->pacientes[i]->nome), 1, salva);
+			sizeof(clinica->pacientes[i]->nome) + 1, 1, salva);
 		fwrite(&clinica->pacientes[i]->sexo,
 			sizeof(clinica->pacientes[i]->sexo), 1, salva);
 		fwrite(&clinica->pacientes[i]->dataNascimento,
-			sizeof(clinica->pacientes[i]->dataNascimento), 1, salva);
+			sizeof(clinica->pacientes[i]->dataNascimento) + 1, 1, salva);
 		fwrite(&clinica->pacientes[i]->imc.peso,
 			sizeof(clinica->pacientes[i]->imc.peso), 1, salva);
 		fwrite(&clinica->pacientes[i]->imc.altura,
@@ -180,7 +182,6 @@ void __fastcall TFormPrincipal::btnCadastrarClick(TObject *Sender) {
 	form->ShowModal();
 
 	if (form->usuarioRegistrou) {
-		clinica->qtdPacientes++;
 		clinica->atualizaDados(this);
 	}
 
