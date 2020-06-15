@@ -2,10 +2,8 @@
 
 #include <fmx.h>
 #pragma hdrstop
-#include "UnitPrincipal.h"
 #include "UnitCadastro.h"
-
-
+#include "Paciente.h"
 
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)

@@ -20,8 +20,9 @@
 #include <FMX.ScrollBox.hpp>
 #include <System.Rtti.hpp>
 #include <FMX.StdCtrls.hpp>
+#include "IMC.h"
 
-
+class Paciente;
 
 // ---------------------------------------------------------------------------
 class TFormPrincipal : public TForm {
@@ -50,37 +51,6 @@ private: // User declarations
 public: // User declarations
 	__fastcall TFormPrincipal(TComponent* Owner);
     int atualizaGrid();
-};
-
-class IMC {
-public:
-	double peso;
-	double altura;
-	float calculaIMC();
-	IMC(double peso, double altura);
-	String diagnostico();
-    IMC();
-};
-
-class Paciente {
-public:
-	int codigo;
-	char nome[15];
-	char sexo;
-	char dataNascimento[10];
-	IMC imc;
-	Paciente();
-    //Paciente(char nome[], char sexo, char dataNascimento[], double peso, double altura);
-};
-
-class Clinica {
-public:
-	String nome;
-	Paciente* pacientes[1000];
-	int atualizaDados(TFormPrincipal* form);
-	int qtdPacientes;
-    Clinica();
-
 };
 
 // ---------------------------------------------------------------------------

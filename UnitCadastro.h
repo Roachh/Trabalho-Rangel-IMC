@@ -11,7 +11,7 @@
 #include <FMX.StdCtrls.hpp>
 #include <FMX.Types.hpp>
 
-#include "UnitPrincipal.h"
+class Paciente;
 
 
 // ---------------------------------------------------------------------------
