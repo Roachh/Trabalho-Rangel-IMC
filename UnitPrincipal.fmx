@@ -49,8 +49,9 @@ object FormPrincipal: TFormPrincipal
       Size.PlatformDefault = False
       TabOrder = 0
       RowCount = 1000
-      Viewport.Width = 829.000000000000000000
-      Viewport.Height = 470.000000000000000000
+      OnEditingDone = StringGridRegistrosEditingDone
+      Viewport.Width = 809.000000000000000000
+      Viewport.Height = 445.000000000000000000
       object StringColumnCodigo: TStringColumn
         Header = 'C'#243'digo'
       end

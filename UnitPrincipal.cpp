@@ -12,6 +12,7 @@
 #pragma resource "*.fmx"
 
 #include <stdio.h>
+#include <string>
 using namespace std;
 
 TFormPrincipal *FormPrincipal;
@@ -89,9 +90,9 @@ void TFormPrincipal::filtraGrid() {
 	wchar_t* wcharCodigo = this->EditCodigo->Text.c_str();
 	wchar_t* wcharNome = this->EditNome->Text.c_str();
 
-	if(wcharCodigo == 0 && wcharNome == 0) {
-        return;
-    }
+	if (wcharCodigo == 0 && wcharNome == 0) {
+		return;
+	}
 
 	// wchar para char
 	char codigoFiltro[10];
@@ -102,4 +103,45 @@ void TFormPrincipal::filtraGrid() {
 	Clinica::clinica->filtraDados(codigoFiltro, nomeFiltro, this);
 }
 
+// ---------------------------------------------------------------------------
+
+void __fastcall TFormPrincipal::StringGridRegistrosEditingDone(TObject *Sender,
+	const int ACol, const int ARow) {
+	wchar_t* changedValue = this->StringGridRegistros->Cells[ACol][ARow]
+		.c_str();
+	wchar_t* codigo = this->StringGridRegistros->Cells[0][ARow].c_str();
+
+	for (int i = 0; i < Clinica::clinica->qtdPacientes; i++) {
+		Paciente* paciente = Clinica::clinica->pacientes[i];
+		if (Clinica::clinica->pacientes[i]->codigo == stoi(codigo)) {
+			switch (ACol) {
+			case 0:
+				Clinica::clinica->pacientes[i]->codigo = stoi(changedValue);
+				break;
+			case 1:
+				wcstombs(Clinica::clinica->pacientes[i]->nome, changedValue,
+					sizeof(Clinica::clinica->pacientes[i]->nome));
+				break;
+			case 2:
+				Clinica::clinica->pacientes[i]->sexo = changedValue[0];
+				break;
+			case 3:
+				wcstombs(Clinica::clinica->pacientes[i]->dataNascimento,
+					changedValue,
+					sizeof(Clinica::clinica->pacientes[i]->dataNascimento));
+				break;
+			case 4:
+				Clinica::clinica->pacientes[i]->imc.peso = stod(changedValue);
+				break;
+			case 5:
+				Clinica::clinica->pacientes[i]->imc.altura = stod(changedValue);
+				break;
+			default: ;
+			}
+		}
+
+		Clinica::clinica->atualizaDados(this);
+	}
+
+}
 // ---------------------------------------------------------------------------

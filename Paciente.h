@@ -16,7 +16,7 @@ public:
 	char dataNascimento[10];
 	IMC imc;
 	Paciente();
-    Paciente(Clinica* clinica);
+	Paciente(Clinica* clinica);
 };
 
 #endif

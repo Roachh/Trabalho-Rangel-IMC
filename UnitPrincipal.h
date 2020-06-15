@@ -50,6 +50,8 @@ __published: // IDE-managed Components
           TShiftState Shift);
 	void __fastcall EditCodigoKeyUp(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
           TShiftState Shift);
+	void __fastcall StringGridRegistrosEditingDone(TObject *Sender, const int ACol,
+          const int ARow);
 
 private: // User declarations
 
