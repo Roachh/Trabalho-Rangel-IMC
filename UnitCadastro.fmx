@@ -1,9 +1,10 @@
 object FormCadastro: TFormCadastro
   Left = 0
   Top = 0
-  Caption = 'Form3'
+  Caption = 'Cadastro de Paciente'
   ClientHeight = 264
   ClientWidth = 262
+  Position = MainFormCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -15,11 +16,11 @@ object FormCadastro: TFormCadastro
     Size.Height = 18.000000000000000000
     Size.PlatformDefault = False
     Text = 'Nome:'
-    TabOrder = 8
-  end
-  object Edit1: TEdit
-    Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 9
+  end
+  object EditNome: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 1
     Position.X = 131.000000000000000000
     Position.Y = 40.000000000000000000
     Size.Width = 100.000000000000000000
@@ -33,11 +34,11 @@ object FormCadastro: TFormCadastro
     Size.Height = 18.000000000000000000
     Size.PlatformDefault = False
     Text = 'Sexo'
-    TabOrder = 6
+    TabOrder = 8
   end
-  object Edit2: TEdit
+  object EditSexo: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 7
+    TabOrder = 2
     Position.X = 131.000000000000000000
     Position.Y = 78.000000000000000000
     Size.Width = 100.000000000000000000
@@ -51,11 +52,11 @@ object FormCadastro: TFormCadastro
     Size.Height = 18.000000000000000000
     Size.PlatformDefault = False
     Text = 'Data de Nascimento'
-    TabOrder = 4
+    TabOrder = 7
   end
-  object Edit3: TEdit
+  object EditDataNascimento: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 5
+    TabOrder = 3
     Position.X = 131.000000000000000000
     Position.Y = 116.000000000000000000
     Size.Width = 100.000000000000000000
@@ -69,11 +70,11 @@ object FormCadastro: TFormCadastro
     Size.Height = 18.000000000000000000
     Size.PlatformDefault = False
     Text = 'Peso:'
-    TabOrder = 2
+    TabOrder = 6
   end
-  object Edit4: TEdit
+  object EditPeso: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 3
+    TabOrder = 4
     Position.X = 131.000000000000000000
     Position.Y = 154.000000000000000000
     Size.Width = 100.000000000000000000
@@ -89,9 +90,9 @@ object FormCadastro: TFormCadastro
     Text = 'Altura:'
     TabOrder = 0
   end
-  object Edit5: TEdit
+  object EditAltura: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 1
+    TabOrder = 5
     Position.X = 131.000000000000000000
     Position.Y = 192.000000000000000000
     Size.Width = 100.000000000000000000
@@ -104,11 +105,11 @@ object FormCadastro: TFormCadastro
     Text = 'Preencha os Dados:'
     TabOrder = 10
   end
-  object Button1: TButton
+  object btnConfirmar: TButton
     Position.X = 80.000000000000000000
     Position.Y = 232.000000000000000000
     TabOrder = 11
     Text = 'Confirmar'
-    OnClick = Button1Click
+    OnClick = btnConfirmarClick
   end
 end

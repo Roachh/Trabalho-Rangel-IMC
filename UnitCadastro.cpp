@@ -24,14 +24,14 @@ __fastcall TFormCadastro::TFormCadastro(Paciente* paciente, TComponent* Owner) :
 
 // ---------------------------------------------------------------------------
 
-void __fastcall TFormCadastro::Button1Click(TObject *Sender) {
+void __fastcall TFormCadastro::btnConfirmarClick(TObject *Sender) {
 
 	usuarioRegistrou = true;
-	wcstombs(paciente->nome, Edit1->Text.c_str(), sizeof(paciente->nome));
-	paciente->sexo = *Edit2->Text.FirstChar();
-	wcstombs(paciente->dataNascimento, Edit3->Text.c_str(), sizeof(paciente->dataNascimento));
-	paciente->imc.peso = Edit4->Text.ToDouble();
-	paciente->imc.altura = Edit5->Text.ToDouble();
+	wcstombs(paciente->nome, EditNome->Text.c_str(), sizeof(paciente->nome));
+	paciente->sexo = *EditSexo->Text.FirstChar();
+	wcstombs(paciente->dataNascimento, EditDataNascimento->Text.c_str(), sizeof(paciente->dataNascimento));
+	paciente->imc.peso = EditPeso->Text.ToDouble();
+	paciente->imc.altura = EditAltura->Text.ToDouble();
 	Close();
 }
 // ---------------------------------------------------------------------------

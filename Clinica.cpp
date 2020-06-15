@@ -70,7 +70,6 @@ void Clinica::filtraDados(char* codigoFiltro, char* nomeFiltro,
 			}
 		}
 	}
-	// !strcmp(clinica->pacientes[i]->nome, nomeFiltro
 
 	form->limpaColunas();
 	if (k != 0) {

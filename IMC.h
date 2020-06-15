@@ -10,9 +10,9 @@ class IMC {
 public:
 	double peso;
 	double altura;
-	float calculaIMC();
+	double calculaIMC();
 	IMC(double peso, double altura);
-	string diagnostico();
+	char* diagnostico();
     IMC();
 };
 

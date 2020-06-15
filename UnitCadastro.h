@@ -18,19 +18,19 @@ class Paciente;
 class TFormCadastro : public TForm {
 __published: // IDE-managed Components
 	TLabel *Label1;
-	TEdit *Edit1;
+	TEdit *EditNome;
 	TLabel *Label2;
-	TEdit *Edit2;
+	TEdit *EditSexo;
 	TLabel *Label3;
-	TEdit *Edit3;
+	TEdit *EditDataNascimento;
 	TLabel *Label4;
-	TEdit *Edit4;
+	TEdit *EditPeso;
 	TLabel *Label5;
-	TEdit *Edit5;
+	TEdit *EditAltura;
 	TLabel *Label6;
-	TButton *Button1;
+	TButton *btnConfirmar;
 
-	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall btnConfirmarClick(TObject *Sender);
 
 private: // User declarations
 public: // User declarations

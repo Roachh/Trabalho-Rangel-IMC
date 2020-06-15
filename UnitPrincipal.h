@@ -27,27 +27,28 @@ class Paciente;
 // ---------------------------------------------------------------------------
 class TFormPrincipal : public TForm {
 __published: // IDE-managed Components
-	TLayout *Layout1;
-	TLayout *Layout2;
-	TStringGrid *StringGrid1;
-	TStringColumn *StringColumn1;
-	TStringColumn *StringColumn2;
-	TStringColumn *StringColumn3;
-	TStringColumn *StringColumn4;
-	TStringColumn *StringColumn5;
-	TStringColumn *StringColumn6;
-	TStringColumn *StringColumn7;
-	TEdit *Edit1;
+	TLayout *LayoutFiltro;
+	TLayout *LayoutGrid;
+	TStringGrid *StringGridRegistros;
+	TStringColumn *StringColumnCodigo;
+	TStringColumn *StringColumnNome;
+	TStringColumn *StringColumnSexo;
+	TStringColumn *StringColumnData;
+	TStringColumn *StringColumnPeso;
+	TStringColumn *StringColumnAltura;
+	TStringColumn *StringColumnIMC;
+	TEdit *EditCodigo;
 	TLabel *lbCodigo;
 	TLabel *lbNome;
-	TEdit *Edit2;
-	TLayout *Layout3;
+	TEdit *EditNome;
+	TLayout *LayoutBotao;
 	TButton *btnCadastrar;
+	TStringColumn *StringColumnDiagnostico;
 
 	void __fastcall btnCadastrarClick(TObject *Sender);
-	void __fastcall Edit2KeyUp(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
+	void __fastcall EditNomeKeyUp(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
           TShiftState Shift);
-	void __fastcall Edit1KeyUp(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
+	void __fastcall EditCodigoKeyUp(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
           TShiftState Shift);
 
 private: // User declarations

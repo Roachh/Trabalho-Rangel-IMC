@@ -1,20 +1,20 @@
 object FormPrincipal: TFormPrincipal
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'Registros de Pacientes'
   ClientHeight = 585
-  ClientWidth = 758
+  ClientWidth = 829
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
-  object Layout1: TLayout
+  object LayoutFiltro: TLayout
     Align = Top
-    Size.Width = 758.000000000000000000
+    Size.Width = 829.000000000000000000
     Size.Height = 65.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
-    object Edit1: TEdit
+    object EditCodigo: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       TabOrder = 0
       Position.X = 56.000000000000000000
@@ -22,7 +22,7 @@ object FormPrincipal: TFormPrincipal
       Size.Width = 121.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
-      OnKeyUp = Edit1KeyUp
+      OnKeyUp = EditCodigoKeyUp
     end
     object lbCodigo: TLabel
       Position.X = 14.000000000000000000
@@ -34,55 +34,58 @@ object FormPrincipal: TFormPrincipal
       TabOrder = 1
     end
   end
-  object Layout2: TLayout
+  object LayoutGrid: TLayout
     Align = Client
-    Size.Width = 758.000000000000000000
+    Size.Width = 829.000000000000000000
     Size.Height = 520.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 3
-    object StringGrid1: TStringGrid
+    object StringGridRegistros: TStringGrid
       Align = Client
       CanFocus = True
       ClipChildren = True
-      Size.Width = 758.000000000000000000
+      Size.Width = 829.000000000000000000
       Size.Height = 470.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
-      Viewport.Width = 738.000000000000000000
-      Viewport.Height = 445.000000000000000000
-      object StringColumn1: TStringColumn
+      RowCount = 1000
+      Viewport.Width = 829.000000000000000000
+      Viewport.Height = 470.000000000000000000
+      object StringColumnCodigo: TStringColumn
         Header = 'C'#243'digo'
       end
-      object StringColumn2: TStringColumn
+      object StringColumnNome: TStringColumn
         Header = 'Nome'
       end
-      object StringColumn3: TStringColumn
+      object StringColumnSexo: TStringColumn
         Header = 'Sexo'
       end
-      object StringColumn4: TStringColumn
+      object StringColumnData: TStringColumn
         Header = 'Data de Nascimento'
-        Size.Width = 130.000000000000000000
       end
-      object StringColumn5: TStringColumn
-        Header = 'Peso'
+      object StringColumnPeso: TStringColumn
+        Header = 'Peso (kg)'
       end
-      object StringColumn6: TStringColumn
-        Header = 'Altura'
+      object StringColumnAltura: TStringColumn
+        Header = 'Altura (m)'
       end
-      object StringColumn7: TStringColumn
+      object StringColumnIMC: TStringColumn
         Header = 'IMC'
       end
+      object StringColumnDiagnostico: TStringColumn
+        Header = 'Diagn'#243'stico'
+      end
     end
-    object Layout3: TLayout
+    object LayoutBotao: TLayout
       Align = Bottom
       Position.Y = 470.000000000000000000
-      Size.Width = 758.000000000000000000
+      Size.Width = 829.000000000000000000
       Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       object btnCadastrar: TButton
         Align = Client
-        Size.Width = 758.000000000000000000
+        Size.Width = 829.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
@@ -100,7 +103,7 @@ object FormPrincipal: TFormPrincipal
     Text = 'Nome'
     TabOrder = 1
   end
-  object Edit2: TEdit
+  object EditNome: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 0
     Position.X = 240.000000000000000000
@@ -108,6 +111,6 @@ object FormPrincipal: TFormPrincipal
     Size.Width = 129.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    OnKeyUp = Edit2KeyUp
+    OnKeyUp = EditNomeKeyUp
   end
 end

@@ -21,26 +21,28 @@ TFormPrincipal *FormPrincipal;
 void TFormPrincipal::limpaColunas() {
 
 	for (int i = 0; i < Clinica::clinica->qtdPacientes; i++) {
-		this->StringGrid1->Cells[0][i] = "";
-		this->StringGrid1->Cells[1][i] = "";
-		this->StringGrid1->Cells[2][i] = "";
-		this->StringGrid1->Cells[3][i] = "";
-		this->StringGrid1->Cells[4][i] = "";
-		this->StringGrid1->Cells[5][i] = "";
-		this->StringGrid1->Cells[6][i] = "";
+		this->StringGridRegistros->Cells[0][i] = "";
+		this->StringGridRegistros->Cells[1][i] = "";
+		this->StringGridRegistros->Cells[2][i] = "";
+		this->StringGridRegistros->Cells[3][i] = "";
+		this->StringGridRegistros->Cells[4][i] = "";
+		this->StringGridRegistros->Cells[5][i] = "";
+		this->StringGridRegistros->Cells[6][i] = "";
+		this->StringGridRegistros->Cells[7][i] = "";
 	}
 }
 
 int TFormPrincipal::atualizaGrid(Paciente* pacientes[1000], int qtdPacientes) {
 
 	for (int i = 0; i < qtdPacientes; i++) {
-		StringGrid1->Cells[0][i] = pacientes[i]->codigo;
-		StringGrid1->Cells[1][i] = pacientes[i]->nome;
-		StringGrid1->Cells[2][i] = pacientes[i]->sexo;
-		StringGrid1->Cells[3][i] = pacientes[i]->dataNascimento;
-		StringGrid1->Cells[4][i] = pacientes[i]->imc.peso;
-		StringGrid1->Cells[5][i] = pacientes[i]->imc.altura;
-		StringGrid1->Cells[6][i] = pacientes[i]->imc.calculaIMC();
+		StringGridRegistros->Cells[0][i] = pacientes[i]->codigo;
+		StringGridRegistros->Cells[1][i] = pacientes[i]->nome;
+		StringGridRegistros->Cells[2][i] = pacientes[i]->sexo;
+		StringGridRegistros->Cells[3][i] = pacientes[i]->dataNascimento;
+		StringGridRegistros->Cells[4][i] = pacientes[i]->imc.peso;
+		StringGridRegistros->Cells[5][i] = pacientes[i]->imc.altura;
+		StringGridRegistros->Cells[6][i] = pacientes[i]->imc.calculaIMC();
+		StringGridRegistros->Cells[7][i] = pacientes[i]->imc.diagnostico();
 	}
 	return 0;
 }
@@ -68,13 +70,13 @@ void __fastcall TFormPrincipal::btnCadastrarClick(TObject *Sender) {
 
 // ---------------------------------------------------------------------------
 
-void __fastcall TFormPrincipal::Edit2KeyUp(TObject *Sender, WORD &Key,
+void __fastcall TFormPrincipal::EditNomeKeyUp(TObject *Sender, WORD &Key,
 	System::WideChar &KeyChar, TShiftState Shift) {
 
 	filtraGrid();
 }
 
-void __fastcall TFormPrincipal::Edit1KeyUp(TObject *Sender, WORD &Key,
+void __fastcall TFormPrincipal::EditCodigoKeyUp(TObject *Sender, WORD &Key,
 	System::WideChar &KeyChar, TShiftState Shift) {
 
 	filtraGrid();
@@ -84,8 +86,8 @@ void __fastcall TFormPrincipal::Edit1KeyUp(TObject *Sender, WORD &Key,
 void TFormPrincipal::filtraGrid() {
 
 	// unicode string para wchar
-	wchar_t* wcharCodigo = this->Edit1->Text.c_str();
-	wchar_t* wcharNome = this->Edit2->Text.c_str();
+	wchar_t* wcharCodigo = this->EditCodigo->Text.c_str();
+	wchar_t* wcharNome = this->EditNome->Text.c_str();
 
 	if(wcharCodigo == 0 && wcharNome == 0) {
         return;

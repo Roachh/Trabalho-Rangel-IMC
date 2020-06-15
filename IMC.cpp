@@ -5,6 +5,7 @@
 #include "IMC.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
+#include <cmath>
 
 IMC::IMC() {
 
@@ -15,11 +16,16 @@ IMC::IMC(double peso, double altura) {
 	this->altura = altura;
 }
 
-float IMC::calculaIMC() {
-	return this->peso / (this->altura * this->altura);
+double IMC::calculaIMC() {
+	double imc = (this->peso / (this->altura * this->altura)) * 100;
+	imc = std::round(imc);
+	imc /= 100;
+    return imc;
+
+
 }
 
-string IMC::diagnostico() {
+char* IMC::diagnostico() {
 	float imc = calculaIMC();
 	if (imc < 17) {
 		return "Muito abaixo do peso";
