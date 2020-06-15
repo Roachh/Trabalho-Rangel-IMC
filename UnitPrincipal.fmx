@@ -22,6 +22,7 @@ object FormPrincipal: TFormPrincipal
       Size.Width = 121.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
+      OnKeyUp = Edit1KeyUp
     end
     object lbCodigo: TLabel
       Position.X = 14.000000000000000000
@@ -107,5 +108,6 @@ object FormPrincipal: TFormPrincipal
     Size.Width = 129.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
+    OnKeyUp = Edit2KeyUp
   end
 end

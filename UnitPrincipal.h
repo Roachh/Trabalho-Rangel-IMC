@@ -45,12 +45,18 @@ __published: // IDE-managed Components
 	TButton *btnCadastrar;
 
 	void __fastcall btnCadastrarClick(TObject *Sender);
+	void __fastcall Edit2KeyUp(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
+          TShiftState Shift);
+	void __fastcall Edit1KeyUp(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
+          TShiftState Shift);
 
 private: // User declarations
 
 public: // User declarations
 	__fastcall TFormPrincipal(TComponent* Owner);
-    int atualizaGrid();
+    void limpaColunas();
+	int atualizaGrid(Paciente* pacientes[1000], int qtdPacientes);
+    void filtraGrid();
 };
 
 // ---------------------------------------------------------------------------

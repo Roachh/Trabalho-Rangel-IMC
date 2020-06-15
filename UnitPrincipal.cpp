@@ -18,73 +18,86 @@ TFormPrincipal *FormPrincipal;
 
 // ---------------------------------------------------------------------------
 
-int TFormPrincipal::atualizaGrid() {
+void TFormPrincipal::limpaColunas() {
 
-	FILE *le = fopen("dados.txt", "rb");
-
-    //Paciente* pacientes[1000];
-
-	if (!le) {
-		return 0;
+	for (int i = 0; i < Clinica::clinica->qtdPacientes; i++) {
+		this->StringGrid1->Cells[0][i] = "";
+		this->StringGrid1->Cells[1][i] = "";
+		this->StringGrid1->Cells[2][i] = "";
+		this->StringGrid1->Cells[3][i] = "";
+		this->StringGrid1->Cells[4][i] = "";
+		this->StringGrid1->Cells[5][i] = "";
+		this->StringGrid1->Cells[6][i] = "";
 	}
+}
 
+int TFormPrincipal::atualizaGrid(Paciente* pacientes[1000], int qtdPacientes) {
 
-
-	int i = 0;
-
-	do {
-		Clinica::clinica->pacientes[i] = new Paciente();
-		fread(&Clinica::clinica->pacientes[i]->codigo,
-			sizeof(Clinica::clinica->pacientes[i]->codigo), 1, le);
-		fread(&Clinica::clinica->pacientes[i]->nome,
-			sizeof(Clinica::clinica->pacientes[i]->nome) + 1, 1, le);
-		fread(&Clinica::clinica->pacientes[i]->sexo,
-			sizeof(Clinica::clinica->pacientes[i]->sexo), 1, le);
-		fread(&Clinica::clinica->pacientes[i]->dataNascimento,
-			sizeof(Clinica::clinica->pacientes[i]->dataNascimento) + 1, 1, le);
-		fread(&Clinica::clinica->pacientes[i]->imc.peso,
-			sizeof(Clinica::clinica->pacientes[i]->imc.peso), 1, le);
-		fread(&Clinica::clinica->pacientes[i]->imc.altura,
-			sizeof(Clinica::clinica->pacientes[i]->imc.altura), 1, le);
-		i++;
+	for (int i = 0; i < qtdPacientes; i++) {
+		StringGrid1->Cells[0][i] = pacientes[i]->codigo;
+		StringGrid1->Cells[1][i] = pacientes[i]->nome;
+		StringGrid1->Cells[2][i] = pacientes[i]->sexo;
+		StringGrid1->Cells[3][i] = pacientes[i]->dataNascimento;
+		StringGrid1->Cells[4][i] = pacientes[i]->imc.peso;
+		StringGrid1->Cells[5][i] = pacientes[i]->imc.altura;
+		StringGrid1->Cells[6][i] = pacientes[i]->imc.calculaIMC();
 	}
-	while (!feof(le));
-
-	Clinica::clinica->qtdPacientes = i - 1;
-
-	for (i = 0; i < Clinica::clinica->qtdPacientes; i++) {
-		StringGrid1->Cells[0][i] = Clinica::clinica->pacientes[i]->codigo;
-		StringGrid1->Cells[1][i] = Clinica::clinica->pacientes[i]->nome;
-		StringGrid1->Cells[2][i] = Clinica::clinica->pacientes[i]->sexo;
-		StringGrid1->Cells[3][i] = Clinica::clinica->pacientes[i]->dataNascimento;
-		StringGrid1->Cells[4][i] = Clinica::clinica->pacientes[i]->imc.peso;
-		StringGrid1->Cells[5][i] = Clinica::clinica->pacientes[i]->imc.altura;
-		StringGrid1->Cells[6][i] = Clinica::clinica->pacientes[i]->imc.calculaIMC();
-	}
-
-	fclose(le);
 	return 0;
 }
 
-
 __fastcall TFormPrincipal::TFormPrincipal(TComponent* Owner) : TForm(Owner) {
 
-	this->atualizaGrid();
+	Clinica::clinica->recuperaDados(this);
 }
-
-
 
 // ---------------------------------------------------------------------------
 
 void __fastcall TFormPrincipal::btnCadastrarClick(TObject *Sender) {
+
 	Paciente* paciente = new Paciente();
 	TFormCadastro *form = new TFormCadastro(paciente, this);
 	form->ShowModal();
 
 	if (form->usuarioRegistrou) {
+		Clinica::clinica->addPaciente(paciente);
 		Clinica::clinica->atualizaDados(this);
 	}
 
 	delete form;
-
 }
+
+// ---------------------------------------------------------------------------
+
+void __fastcall TFormPrincipal::Edit2KeyUp(TObject *Sender, WORD &Key,
+	System::WideChar &KeyChar, TShiftState Shift) {
+
+	filtraGrid();
+}
+
+void __fastcall TFormPrincipal::Edit1KeyUp(TObject *Sender, WORD &Key,
+	System::WideChar &KeyChar, TShiftState Shift) {
+
+	filtraGrid();
+}
+// ---------------------------------------------------------------------------
+
+void TFormPrincipal::filtraGrid() {
+
+	// unicode string para wchar
+	wchar_t* wcharCodigo = this->Edit1->Text.c_str();
+	wchar_t* wcharNome = this->Edit2->Text.c_str();
+
+	if(wcharCodigo == 0 && wcharNome == 0) {
+        return;
+    }
+
+	// wchar para char
+	char codigoFiltro[10];
+	char nomeFiltro[15];
+	wcstombs(codigoFiltro, wcharCodigo, sizeof(codigoFiltro));
+	wcstombs(nomeFiltro, wcharNome, sizeof(nomeFiltro));
+
+	Clinica::clinica->filtraDados(codigoFiltro, nomeFiltro, this);
+}
+
+// ---------------------------------------------------------------------------

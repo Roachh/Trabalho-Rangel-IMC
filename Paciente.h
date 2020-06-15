@@ -5,6 +5,8 @@
 //---------------------------------------------------------------------------
 #include "IMC.h"
 
+class Clinica;
+
 
 class Paciente {
 public:
@@ -14,6 +16,7 @@ public:
 	char dataNascimento[10];
 	IMC imc;
 	Paciente();
+    Paciente(Clinica* clinica);
 };
 
 #endif
